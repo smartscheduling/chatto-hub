@@ -20,6 +20,13 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%- if provider == :github %>
+      <%= link_to omniauth_authorize_path(resource_name, provider) do%><br />
+        <i class="fa fa-github fa-2x"></i>
+        <%= "Sign in with #{provider.to_s.titleize}" %>
+      <% end %>
+    <%- else %>
+      <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <% end %>
   <% end -%>
 <% end -%>

@@ -11,6 +11,7 @@ gem 'omniauth-github'
 gem 'devise'
 gem 'foundation-rails'
 gem 'dotenv-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'pry-rails'
