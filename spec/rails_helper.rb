@@ -55,4 +55,6 @@ RSpec.configure do |config|
     OmniAuth.config.test_mode = true
     OmniAuth.config.logger = Logger.new("/dev/null")
   end
+  config.include AuthenticationHelper
 end
+
