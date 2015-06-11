@@ -2,7 +2,10 @@
 
 <ul>
   <%- @projects.each do |proj| %>
-    <li><%= proj.name %> - <%= proj.description %></li>
+    <li>
+      <%= proj.name %> - <%= proj.description %>
+      <%= link_to 'Join Project', project_memberships_path(proj), method: :post %>
+    </li>
   <% end %>
 </ul>
 
