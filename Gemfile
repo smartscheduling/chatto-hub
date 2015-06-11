@@ -13,6 +13,8 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'slack-api'
+gem 'rest-client'
 
 group :development, :test do
   gem 'pry-rails'

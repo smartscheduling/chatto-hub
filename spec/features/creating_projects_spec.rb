@@ -7,6 +7,7 @@ feature "creating projects" do
       sign_in_as(user)
 
       visit new_project_path
+      allow_any_instance_of(CreateProject).to receive(:handle_slack_logic).and_return(true)
 
       fill_in 'Name', with: 'Smart Scheduling'
       click_on 'Create Project'

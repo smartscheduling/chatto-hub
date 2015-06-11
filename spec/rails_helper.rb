@@ -54,6 +54,10 @@ RSpec.configure do |config|
   config.before :each do
     OmniAuth.config.test_mode = true
     OmniAuth.config.logger = Logger.new("/dev/null")
+
+    Slack.configure do |config|
+      config.token = ENV['SLACK_TEST_TOKEN']
+    end
   end
   config.include AuthenticationHelper
 end
