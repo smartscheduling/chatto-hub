@@ -28,6 +28,16 @@ class SlackAdapter
     response["ok"] # return true/false
   end
 
+  def find_channel_by_name(name)
+    name = sanitize_channel_name(name)
+    channels = Slack.channels_list
+    channels["channels"].find { |c| c["name"] == name }
+  end
+
+  def sanitize_channel_name(name)
+    name.downcase.gsub(' ', '-')
+  end
+
   def user_on_team?(email)
     Slack.users_list["members"].any? do |user|
       user["profile"]["email"] == email

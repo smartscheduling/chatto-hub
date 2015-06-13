@@ -6,7 +6,7 @@ class ProjectMembershipsController < ApplicationController
     if CreateProjectMembership.new(current_user, project).perform
       flash[:notice] = "Successfully joined project"
     else
-      flash[:notice] = "Failure"
+      flash[:notice] = "Unable to join project."
     end
 
     redirect_to projects_path
