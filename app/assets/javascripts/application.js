@@ -16,3 +16,9 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(function() {
+  setTimeout(function() {
+    $(".flash").hide(500)
+  }, 1500);
+});
