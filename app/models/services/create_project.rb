@@ -1,9 +1,9 @@
 class CreateProject
-  attr_reader :user, :params, :msg_client
-  def initialize(user, params, msg_client=nil)
+  attr_reader :user, :params, :slack_client
+  def initialize(user, params, slack_client=nil)
     @user = user
     @params = params
-    @msg_client = msg_client || SlackAdapter.new
+    @slack_client = slack_client || SlackAdapter.new
   end
 
   def perform
@@ -39,22 +39,22 @@ class CreateProject
   end
 
   def slack_user_id
-    msg_client.get_user_id_by_email(user.email)
+    slack_client.get_user_id_by_email(user.email)
   end
 
   def user_is_on_slack_team?
-    msg_client.user_on_team?(user.email)
+    slack_client.user_on_team?(user.email)
   end
 
   def slack_team_invite(email, channel_id)
-    msg_client.team_invite(email, channel_id)
+    slack_client.send_team_invite(email, channel_id)
   end
 
   def slack_channel_invite(cid, uid)
-    msg_client.send_channel_invite(cid, uid)
+    slack_client.send_channel_invite(cid, uid)
   end
 
   def create_slack_channel(name)
-    msg_client.channels_create(name: name)
+    slack_client.channels_create(name: name)
   end
 end

@@ -16,6 +16,11 @@ gem 'font-awesome-rails'
 gem 'slack-api'
 gem 'rest-client'
 
+group :test do
+  gem 'webmock'
+  gem 'vcr'
+end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'

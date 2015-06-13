@@ -58,6 +58,11 @@ RSpec.configure do |config|
     Slack.configure do |config|
       config.token = ENV['SLACK_TEST_TOKEN']
     end
+
+    VCR.configure do |config|
+      config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+      config.hook_into :webmock # or :fakeweb
+    end
   end
   config.include AuthenticationHelper
 end
