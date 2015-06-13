@@ -1,0 +1,28 @@
+input.button.tiny, a.button, a.button.tiny {
+  background: none;
+  font-family: 'Ubuntu mono';
+  border: 2px solid black;
+  color: black;
+  font-weight: 600;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background: black;
+    color: white;
+  }
+
+}
+
+
+.flash {
+  border: 2px solid #eee;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding: 1%;
+}
+
+.flash p {
+  font-family: 'Ubuntu mono';
+  margin-bottom: 0;
+}
