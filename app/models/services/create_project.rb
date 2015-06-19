@@ -9,7 +9,7 @@ class CreateProject
   def perform
     project = create_project
     create_associated_membership(project)
-    handle_slack_logic(project)
+    # handle_slack_logic(project)
   rescue ActiveRecord::RecordInvalid
     false
   end

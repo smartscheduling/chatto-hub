@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
   def create
     if CreateProject.new(current_user, project_params).perform
       flash[:notice] = "Successfully created project."
