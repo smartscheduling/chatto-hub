@@ -1,11 +1,19 @@
-<h1>Projects</h1>
+<div id="projects">
+  <div class="title">Projects</div>
+  <ul>
+    <%- @projects.each do |proj| %>
+      <li>
+          <div class="row">
+            <div class="large-8 columns">
+              <span class="name"><%= proj.name %></span>
+              <p class="description"><%= proj.description %></p>
+            </div>
+            <div class="large-4 columns">
+              <%= link_to 'Join Project', project_memberships_path(proj), method: :post, class: "button tiny" %>
+            </div>
+          </div>
+      </li>
+    <% end %>
+  </ul>
 
-<ul>
-  <%- @projects.each do |proj| %>
-    <li>
-      <%= proj.name %> - <%= proj.description %>
-      <%= link_to 'Join Project', project_memberships_path(proj), method: :post %>
-    </li>
-  <% end %>
-</ul>
-
+</div>
