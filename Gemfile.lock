@@ -269,11 +269,8 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.2.1)
-<<<<<<< HEAD
-  refills
-=======
   rails_12factor
->>>>>>> master
+  refills
   rest-client
   rspec-rails
   sass-rails (~> 5.0)
