@@ -10,7 +10,15 @@ class Project < ActiveRecord::Base
   validates :name,
     presence: true
 
-  def description
-    self[:description] || 'No description'
+  before_create :create_slack_channel
+
+  def create_slack_channel
+    channel = SlackAdapter.new.channels_create(name: name)
+    if channel["ok"]
+      id = channel["channel"]["id"]
+      self.channel_id = id
+    else
+      false
+    end
   end
 end
