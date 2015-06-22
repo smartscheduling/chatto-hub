@@ -20,4 +20,5 @@ SLACK_TOKEN=
 ```
 
 ### TODO:
+* have channel_id saved to the project so I don't have to make another API request
 

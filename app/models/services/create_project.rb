@@ -1,4 +1,6 @@
 class CreateProject
+  include ActiveModel::Validations
+
   attr_reader :user, :params, :slack_client
   def initialize(user, params, slack_client=nil)
     @user = user
@@ -6,24 +8,27 @@ class CreateProject
     @slack_client = slack_client || SlackAdapter.new
   end
 
-  def perform
-    project = create_project
-    create_associated_membership(project)
-    # handle_slack_logic(project)
-  rescue ActiveRecord::RecordInvalid
-    false
+  validate :channel_exists?
+
+  def save
+    if valid?
+      persist!
+    else
+      false
+    end
+  end
+
+  def channel_exists?
+    if slack_client.find_channel_by_name(params["name"])
+      errors[:channel] << "or project already exists. Pick new name"
+    end
   end
 
   private
 
-  def handle_slack_logic(project)
-    channel = create_slack_channel(project.name)
-    channel_id = channel["channel"]["id"]
-    if user_is_on_slack_team?
-      slack_channel_invite(channel_id, slack_user_id)
-    else
-      slack_team_invite(user.email, channel_id)
-    end
+  def persist!
+    project = create_project
+    create_associated_membership(project)
   end
 
   def create_project
@@ -34,27 +39,6 @@ class CreateProject
   end
 
   def create_associated_membership(project)
-    pm = ProjectMembership.new(project: project, user: user)
-    pm.save!
-  end
-
-  def slack_user_id
-    slack_client.get_user_id_by_email(user.email)
-  end
-
-  def user_is_on_slack_team?
-    slack_client.user_on_team?(user.email)
-  end
-
-  def slack_team_invite(email, channel_id)
-    slack_client.send_team_invite(email, channel_id)
-  end
-
-  def slack_channel_invite(cid, uid)
-    slack_client.send_channel_invite(cid, uid)
-  end
-
-  def create_slack_channel(name)
-    slack_client.channels_create(name: name)
+    ProjectMembership.create!(project: project, user: user)
   end
 end

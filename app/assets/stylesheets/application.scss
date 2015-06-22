@@ -10,46 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require foundation_and_overrides
  *= require font-awesome
  */
 
- @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
- @import 'globals';
+@import 'bourbon';
+@import 'neat';
+@import 'refills/hero';
+@import 'refills/modal';
 
-#projects {
-  font-family: 'Ubuntu Mono';
-  div.title {
-    font-size: 35px;
-    margin-left: 40%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-  }
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+@import 'globals';
+@import 'projects/index';
+@import 'home_page'
 
-  span.name {
-    font-size: 20px;
-  }
-
-  p.description {
-    font-size: 12px;
-    margin-bottom: 0;
-  }
-
-  .button {
-    margin-left: 20%;
-    vertical-align: text-top;
-  }
-
-  ul {
-    li {
-      list-style-type: none;
-      margin: 0;
-      padding: 15px;
-      margin-bottom: 15px;
-      border: 1px solid #eeeeee;
-      border-radius: 5px;
-    }
-  }
-}

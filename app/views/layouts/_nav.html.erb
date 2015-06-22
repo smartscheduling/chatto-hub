@@ -1,0 +1,41 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">ChattoHub</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <li><%= link_to 'New Project', new_project_path %></li>
+      <li><%= link_to 'Browse Projects', projects_path %></li>
+      <%- if current_user.authenticated? -%>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      <%- else -%>
+        <li>
+          <div class="modal">
+              <label for="modal-1" id="sign-in">
+                <div class="modal-trigger">Sign In</div>
+              </label>
+            <input class="modal-state" id="modal-1" type="checkbox" />
+            <div class="modal-fade-screen">
+              <div class="modal-inner">
+                <div class="modal-close" for="modal-1"></div>
+                <h1>Sign in with Github</h1>
+                <p class="modal-intro">We currently require sign in with github in order to give you access to project repositories.</p>
+                <p>
+                <%= link_to omniauth_authorize_path(:user, :github), class: 'button oauth' do %>
+                  <i class="fa fa-github fa-2x"></i>
+                  Sign in with Github
+                <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+      <%- end -%>
+    </ul>
+  </section>
+</nav>
+
+

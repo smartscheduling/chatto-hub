@@ -9,7 +9,23 @@ input.button.tiny, a.button, a.button.tiny {
     background: black;
     color: white;
   }
+  &:focus {
+    background: black;
+    color: white;
+  }
+}
 
+input.button.tiny.inverse, a.button.inverse, a.button.tiny.inverse {
+  background: black;
+  font-family: 'Ubuntu mono';
+  border: 2px solid black;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background: none;
+    color: white;
+  }
 }
 
 .flash {
@@ -25,3 +41,4 @@ input.button.tiny, a.button, a.button.tiny {
   font-family: 'Ubuntu mono';
   margin-bottom: 0;
 }
+
