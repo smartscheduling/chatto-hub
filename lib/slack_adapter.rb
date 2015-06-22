@@ -1,5 +1,4 @@
 require 'rest-client'
-require 'pry'
 
 class SlackAdapter
   class SlackTeamInviteError < StandardError; end
