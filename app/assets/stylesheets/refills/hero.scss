@@ -3,14 +3,14 @@
   $action-color: #477DCA !default;
   $large-screen: em(860) !default;
   $small-screen: em(400) !default;
-  $hero-background-top: #7F99BE;
-  $hero-background-bottom: #20392B;
+  $hero-background-top: white;
+  $hero-background-bottom: white;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image: 'http://s2.postimg.org/69lgw0hmh/chatto_Hub2.jpg';
+  /* $hero-image: 'http://s2.postimg.org/69lgw0hmh/chatto_Hub2.jpg'; */
 
-  @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
-  background-color: #324766;
+  /* @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll); */
+  background-color: white;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,15 +24,16 @@
   .hero-inner {
     @include outer-container;
     @include clearfix;
-    color: $hero-color;
+    color: black;
     margin: auto;
     padding: 3.5em;
     text-align: center;
 
     .hero-copy {
       text-align: center;
-      background: rgba(51, 51, 51, .7);
-      box-shadow: 2px 2px 5px #333;
+      /* background: rgba(51, 51, 51, .7); */
+      /* background-image: image-url('terminal'); */
+      /* box-shadow: 2px 2px 5px #333; */
 
       @include media($small-screen) {
         margin: 0 3em;
@@ -45,7 +46,7 @@
       h1 {
         font-size: 2em;
         margin-bottom: 0.5em;
-        color: white;
+        color: black;
 
         @include media($large-screen) {
           font-size: 2.2em;
