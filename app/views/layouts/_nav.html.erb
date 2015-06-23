@@ -11,6 +11,7 @@
       <li><%= link_to 'Browse Projects', projects_path %></li>
       <%- if current_user.authenticated? -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <li><%= image_tag avatar_url(current_user, 45) %></li>
       <%- else -%>
         <li>
           <div class="modal">
