@@ -9,13 +9,14 @@
 
 
   <%= render 'layouts/nav' %>
-  <%= yield :hero %>
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
      <p><%= value %></p>
     </div>
   <%- end -%>
+
+  <%= yield :hero %>
 
   <div class="row">
     <div class="large-8 large-offset-2 columns">

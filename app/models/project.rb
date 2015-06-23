@@ -13,10 +13,14 @@ class Project < ActiveRecord::Base
   before_create :create_slack_channel
 
   def create_slack_channel
-    channel = SlackAdapter.new.channels_create(name: name)
+    adapter = SlackAdapter.new
+    channel = adapter.channels_create(name: name)
+    channel_url = adapter.channel_url(name)
+
     if channel["ok"]
       id = channel["channel"]["id"]
       self.channel_id = id
+      self.url = channel_url
     else
       false
     end

@@ -7,10 +7,10 @@ class SlackInvitationsController < ApplicationController
     user_id = adapter.get_user_id_by_email(current_user.email)
 
     if adapter.send_channel_invite(project.channel_id, user_id)
-      flash[:notice] = "Success! Added to the slack channel"
+      redirect_to project.url
     else
       flash[:error] = "Error, something went wrong"
+      redirect_to projects_path
     end
-    redirect_to projects_path
   end
 end
