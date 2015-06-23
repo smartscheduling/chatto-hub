@@ -42,8 +42,7 @@ function type() {
 $(function() {
   setTimeout(function() {
     $(".flash").hide(500)
-  }, 1500);
-
+  }, 4000);
 
   setInterval ('cursorAnimation()', 400);
   captionEl = $('#caption');
