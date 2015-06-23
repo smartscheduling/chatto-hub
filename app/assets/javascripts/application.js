@@ -15,10 +15,41 @@
 //= require foundation
 //= require_tree .
 
+// foundation
 $(function(){ $(document).foundation(); });
+
+var captionLength = 0;
+var caption = '';
+
+function cursorAnimation() {
+  $('#cursor').animate({
+      opacity: 0
+  }, 'fast', 'swing').animate({
+      opacity: 1
+  }, 'fast', 'swing');
+}
+
+function type() {
+  captionEl.html(caption.substr(0, captionLength++));
+  if(captionLength < caption.length+1) {
+      setTimeout('type()', 100);
+  } else {
+      captionLength = 0;
+      caption = '';
+  }
+}
 
 $(function() {
   setTimeout(function() {
     $(".flash").hide(500)
-  }, 1500);
+  }, 4000);
+
+  setInterval ('cursorAnimation()', 400);
+  captionEl = $('#caption');
+
+  function testTypingEffect() {
+    caption = 'Collaborate on clinical data mining projects';
+    type();
+  }
+  testTypingEffect();
 });

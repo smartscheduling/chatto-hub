@@ -9,13 +9,19 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
   def create
-    if CreateProject.new(current_user, project_params).perform
+    @project = CreateProject.new(current_user, project_params)
+    if @project.save
       flash[:notice] = "Successfully created project."
+      redirect_to projects_path
     else
-      flash[:notice] = "failure"
+      flash[:error] = @project.errors.full_messages.join(', ')
+      redirect_to :back
     end
-    redirect_to projects_path
   end
 
   private

@@ -7,32 +7,14 @@
 </head>
 <body>
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">ChattoHub</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><%= link_to 'New Project', new_project_path %></li>
-        <%- if current_user -%>
-          <li><%= image_tag avatar_url(current_user, 40) %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
-
+  <%= render 'layouts/nav' %>
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
      <p><%= value %></p>
     </div>
   <%- end -%>
+
+  <%= yield :hero %>
 
   <div class="row">
     <div class="large-8 large-offset-2 columns">

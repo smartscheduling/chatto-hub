@@ -1,4 +1,12 @@
-<% if current_user %>
-  <h3>Welcome, <%= current_user.nickname %></h3>
+<%= content_for :hero do %>
+  <div class="hero">
+   <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Crowdsourced Medical Knowledge</h1>
+        <p><span id="caption"></span><span id="cursor">|</span></p>
+        <%= link_to 'Explore Projects', projects_path, class: 'button tiny inverse' %>
+        <%= link_to 'New Project', new_project_path, class: 'button tiny inverse' %>
+      </div>
+    </div>
+  </div>
 <% end %>
-

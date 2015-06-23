@@ -1,12 +1,20 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
   has_many :project_memberships
   has_many :projects, through: :project_memberships
+
+  after_create :slack_team_invite
+
+  def slack_team_invite
+    SlackAdapter.new.send_team_invite(email)
+  end
+
+  def authenticated?
+    true
+  end
 
   def self.github_from_omniauth(auth)
     where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|

@@ -3,18 +3,24 @@ ruby '2.1.5'
 
 gem 'rails', '4.2.1'
 gem 'pg'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Authentication
 gem 'omniauth-github'
 gem 'devise'
-gem 'foundation-rails'
 gem 'dotenv-rails'
-gem 'font-awesome-rails'
 gem 'slack-api'
 gem 'rest-client'
+
+# Assets
+gem 'jquery-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails', '~> 5.0'
+gem 'font-awesome-rails'
+gem 'foundation-rails'
+gem 'bourbon'
+gem 'neat'
+gem 'refills'
 
 group :test do
   gem 'webmock'
@@ -33,4 +39,7 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
 
