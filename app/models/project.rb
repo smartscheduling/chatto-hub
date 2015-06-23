@@ -6,23 +6,4 @@ class Project < ActiveRecord::Base
   has_many :project_memberships
   has_many :users,
     through: :project_memberships
-
-  validates :name,
-    presence: true
-
-  before_create :create_slack_channel, unless: :skip_callbacks
-
-  def create_slack_channel
-    adapter = SlackAdapter.new
-    channel = adapter.channels_create(name: name)
-    channel_url = adapter.channel_url(name)
-
-    if channel["ok"]
-      id = channel["channel"]["id"]
-      self.channel_id = id
-      self.url = channel_url
-    else
-      false
-    end
-  end
 end
