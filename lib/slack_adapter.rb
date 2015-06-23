@@ -37,6 +37,11 @@ class SlackAdapter
     true
   end
 
+  def channel_url(name)
+    name = sanitize_channel_name(name)
+    "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/messages/#{name}/"
+  end
+
   # move id to project model
   def find_channel_by_name(name)
     name = sanitize_channel_name(name)
