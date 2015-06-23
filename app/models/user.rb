@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :project_memberships
   has_many :projects, through: :project_memberships
 
-  after_create :slack_team_invite
+  after_create :slack_team_invite, unless: :skip_callbacks
 
   def slack_team_invite
     SlackAdapter.new.send_team_invite(email)

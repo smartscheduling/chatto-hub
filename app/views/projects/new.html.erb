@@ -1,6 +1,10 @@
 <h1>Create a new project</h1>
 
-<%= form_for @project do |f| %>
+<%= form_for @project, url: projects_path do |f| %>
+  <% if @project.errors.any? %>
+    <%= render 'layouts/shared/errors', error_object: @project %>
+  <% end %>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 

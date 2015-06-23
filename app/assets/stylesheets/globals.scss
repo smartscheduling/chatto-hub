@@ -42,3 +42,9 @@ input.button.tiny.inverse, a.button.inverse, a.button.tiny.inverse {
   margin-bottom: 0;
 }
 
+.error-messages {
+  border: 2px solid #e74c3c;
+}
+.error-messages ul li {
+  margin-left: 20px;
+}

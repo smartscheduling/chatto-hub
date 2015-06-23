@@ -6,27 +6,25 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
-  end
-
-  def show
-    @project = Project.find(params[:id])
+    @project = ProjectForm.new
   end
 
   def create
-    @project = CreateProject.new(current_user, project_params)
+    @project = ProjectForm.new(project_params.merge(
+      user: current_user,
+      slack: SlackAdapter.new
+    ))
+
     if @project.save
-      flash[:notice] = "Successfully created project."
-      redirect_to projects_path
+      redirect_to projects_path, notic: "Successfully created project."
     else
-      flash[:error] = @project.errors.full_messages.join(', ')
-      redirect_to :back
+      render :new
     end
   end
 
   private
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project_form).permit(:name, :description)
   end
 end
