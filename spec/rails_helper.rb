@@ -62,8 +62,19 @@ RSpec.configure do |config|
     VCR.configure do |config|
       config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
       config.hook_into :webmock # or :fakeweb
+      config.configure_rspec_metadata!
     end
   end
+
+  config.before(:all, callbacks: true) do
+    ActiveRecord::Base.skip_callbacks = false
+  end
+
+  config.after(:all, callbacks: true) do
+    ActiveRecord::Base.skip_callbacks = true
+  end
+
   config.include AuthenticationHelper
 end
+ActiveRecord::Base.skip_callbacks = true
 

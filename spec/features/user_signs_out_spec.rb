@@ -11,18 +11,17 @@ feature 'user signs out', %Q{
   #   forgotten on the machine I'm using
 
   scenario 'authenticated user signs out' do
-    user = FactoryGirl.create(:user)
+    allow_any_instance_of(SlackAdapter).to receive(:send_team_invite).and_return(true)
+    mock_github_auth!
 
-    visit new_user_session_path
+    visit root_path
+    find(:css, '#sign-in').click
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    click_link "Sign in with Github"
 
-    click_button 'Log in'
+    expect(page).to have_content("Successfully signed in as boblob.")
 
-    expect(page).to have_content('Signed in successfully')
-
-    click_link 'Sign Out'
+    click_on 'Sign Out'
     expect(page).to have_content('Signed out successfully')
   end
 
@@ -31,3 +30,20 @@ feature 'user signs out', %Q{
     expect(page).to_not have_content('Sign Out')
   end
 end
+
+def mock_github_auth!
+  OmniAuth.config.mock_auth[:github] = {
+    "provider" => "github",
+    "uid" => "123456",
+    "info" => {
+      "nickname" => "boblob",
+      "email" => "bob@example.com",
+      "name" => "Bob Loblaw",
+      "image" => "http://www.s3link.com"
+    },
+    "credentials" => {
+      "token" => "12345"
+    }
+  }
+end
+

@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   validates :name,
     presence: true
 
-  before_create :create_slack_channel
+  before_create :create_slack_channel, unless: :skip_callbacks
 
   def create_slack_channel
     adapter = SlackAdapter.new
