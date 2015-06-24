@@ -33,5 +33,7 @@ module ChattoHub
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths << Rails.root.join('lib')
+    config.assets.paths << Rails.root.join('assets', 'fonts')
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end
 end

@@ -15,16 +15,16 @@ input.button.tiny, a.button, a.button.tiny {
   }
 }
 
-input.button.tiny.inverse, a.button.inverse, a.button.tiny.inverse {
-  background: black;
+input.button.tiny.cta, a.button.cta, a.button.tiny.cta {
+  background: rgb(66, 133, 244);
   font-family: 'Ubuntu mono';
-  border: 2px solid black;
+  border: 2px solid rgb(66, 133, 244);
   color: white;
   font-weight: 600;
   transition: background-color 0.5s ease;
   &:hover {
     background: none;
-    color: white;
+    color: black;
   }
 }
 

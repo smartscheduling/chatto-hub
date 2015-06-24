@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
     adapter = SlackAdapter.new
 
     unless adapter.user_on_team?(current_user.email)
-      flash[:notice] = "Register in order to join slack team"
-      redirect_to new_user_registration_path
+      flash[:notice] = "Sign in to get invite for slack team"
+      redirect_to root_path
     end
   end
 end

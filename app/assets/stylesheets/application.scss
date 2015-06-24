@@ -14,6 +14,26 @@
  *= require font-awesome
  */
 
+@font-face {
+  font-family: "arsenal";
+  src: font-url('Arsenal-Regular.otf') unqote("format('opentype')");
+  src: font-url('Arsenal-Bold.otf') unquote("format('opentype')");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'bebasregular';
+    src: font-url('BEBAS___-webfont.eot');
+    src: font-url('BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('BEBAS___-webfont.woff') format('woff'),
+         font-url('BEBAS___-webfont.ttf') format('truetype'),
+         font-url('BEBAS___-webfont.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 @import 'bourbon';
 @import 'neat';
 @import 'refills/hero';
