@@ -11,6 +11,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'slack-api'
 gem 'rest-client'
+gem 'github_api'
 
 # Assets
 gem 'jquery-rails'

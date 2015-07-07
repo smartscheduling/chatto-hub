@@ -1,6 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     @user = User.github_from_omniauth(auth)
+    @user.update(token: auth["credentials"]["token"])
     # sign_in(:user, user)
     # redirect_to root_path
     if @user.persisted?
