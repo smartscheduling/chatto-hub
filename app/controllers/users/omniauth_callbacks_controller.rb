@@ -2,6 +2,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     @user = User.github_from_omniauth(auth)
     @user.update(token: auth["credentials"]["token"])
+    # github = Github.new(client_id: ENV['GITHUB_APP_ID'], client_secret: ENV['GITHUB_APP_SECRET'])
+    # auth_url = github.authorize_url scope: 'admin:org'
+    # binding.pry
     # sign_in(:user, user)
     # redirect_to root_path
     if @user.persisted?

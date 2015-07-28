@@ -17,21 +17,25 @@ class ProjectsController < ApplicationController
       user: current_user,
       slack: SlackAdapter.new
     ))
-
-    github = Github.new(client_id: ENV['GITHUB_APP_ID'], client_secret: ENV['GITHUB_APP_SECRET'])
-    token = github.get_token(ENV['GITHUB_CHATTO_HUB_CODE'])
-    uri = URI.parse("https://api.github.com/orgs/Chatto-Hub-Test/teams")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-
-    headers = { "Authentication" => "#{token}" }
-    request = Net::HTTP::Post.new(uri.request_uri, headers)
-    request.body = "{name: #{project_params[:name]}, description: #{project_params[:description]}}".to_json
-    request["Authorization"] = ENV['GITHUB_APP_SECRET']
-    request["content-type"] = "application/json"
-    response = http.request(request)
-    response.body
     binding.pry
+    auth_result = JSON.parse(RestClient.post('https://api.github.com/orgs/Chatto-Hub-Test/teams',
+                             access_token: ENV['GITHUB_APP_TOKEN'],
+                             name: "#{project_params[:name]}",
+                             description: "#{project_params[:description]}"))
+
+    binding.pry
+    # uri = URI.parse("https://api.github.com/orgs/Chatto-Hub-Test/teams")
+    # http = Net::HTTP.new(uri.host, uri.port)
+    # http.use_ssl = true
+
+    # headers = { "Authentication" => "token" }
+    # request = Net::HTTP::Post.new(uri.request_uri, headers)
+    # request.body = "{name: #{project_params[:name]}, description: #{project_params[:description]}}".to_json
+    # request["Authorization"] = ENV['GITHUB_APP_TOKEN']
+    # request["content-type"] = "application/json"
+    # response = http.request(request)
+    # response.body
+    # binding.pry
 
     if @project.save
       redirect_to projects_path, notice: "Successfully created project."
