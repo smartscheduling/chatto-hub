@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+SlackAdapter.team_id = "12345"
+SlackAdapter.token = "cool-token"
+SlackAdapter.team_name = "test-team"
+
 describe SlackAdapter do
   subject { SlackAdapter.new }
 
@@ -19,8 +23,8 @@ describe SlackAdapter do
 
     it "executes a post with the right queries" do
       email = "some_email"
-      payload = "_attempts=1&channels=C067NNHEY&email=#{email}&set_active=true&team_id=#{ENV['SLACK_TEAM_ID']}&token=#{ENV['SLACK_TEST_TOKEN']}"
-      proper_args = { method: :post, url: "https://datamarathontest.slack.com/api/users.admin.invite?t=42", payload: payload }
+      payload = "_attempts=1&channels=C067NNHEY&email=#{email}&set_active=true&team_id=12345&token=cool-token"
+      proper_args = { method: :post, url: "https://test-team.slack.com/api/users.admin.invite?t=42", payload: payload }
       expect(RestClient::Request).to receive(:execute).with(proper_args).and_return({ok: true}.to_json)
       subject.send_team_invite(email)
     end
@@ -55,7 +59,7 @@ describe SlackAdapter do
   describe "#channel_url" do
     it "returns url of a name sanitized for a channel" do
       name = "sweet channel"
-      expect(subject.channel_url(name)).to eq "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/messages/sweet-channel/"
+      expect(subject.channel_url(name)).to eq "https://test-team.slack.com/messages/sweet-channel/"
     end
   end
 
