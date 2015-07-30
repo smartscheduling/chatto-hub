@@ -1,6 +1,6 @@
 class ProjectForm
   include ActiveModel::Model
-  include Virtus
+  include Virtus.model
 
   attribute :name, String
   attribute :description, String

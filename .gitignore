@@ -13,4 +13,4 @@
 /tmp
 .env
 /spec/fixtures/vcr_cassettes
-/coverage
+/coverage/*
