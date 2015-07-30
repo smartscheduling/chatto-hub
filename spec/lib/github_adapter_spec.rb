@@ -22,7 +22,7 @@ describe GithubAdapter do
       expect_any_instance_of(RestClient::Resource).to receive(:post).with(
         { name: name, description: desc }.to_json,
         content_type: "application/json"
-      ).and_return({ok: true}.to_json)
+      ).and_return({ ok: true }.to_json)
 
       subject.create_team(name, desc)
     end

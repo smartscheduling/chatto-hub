@@ -24,14 +24,23 @@ describe SlackAdapter do
     it "executes a post with the right queries" do
       email = "some_email"
       payload = "_attempts=1&channels=C067NNHEY&email=#{email}&set_active=true&team_id=12345&token=cool-token"
-      proper_args = { method: :post, url: "https://test-team.slack.com/api/users.admin.invite?t=42", payload: payload }
-      expect(RestClient::Request).to receive(:execute).with(proper_args).and_return({ok: true}.to_json)
+      proper_args = {
+        method: :post,
+        url: "https://test-team.slack.com/api/users.admin.invite?t=42",
+        payload: payload
+      }
+
+      expect(RestClient::Request).to receive(:execute).with(proper_args).
+        and_return({ok: true}.to_json)
       subject.send_team_invite(email)
     end
 
     it "returns proper error if applicable" do
-      allow(RestClient::Request).to receive(:execute).and_return("{\"error\":\"already_in_team\"}")
-      expect{subject.send_team_invite("email")}.to raise_error(SlackAdapter::SlackTeamInviteError)
+      allow(RestClient::Request).to receive(:execute).
+        and_return("{\"error\":\"already_in_team\"}")
+
+      expect{subject.send_team_invite("email")}.
+        to raise_error(SlackAdapter::SlackTeamInviteError)
     end
   end
 
@@ -52,14 +61,18 @@ describe SlackAdapter do
     it "raises an error if user is already in channel" do
       slack_double = double(channels_invite: { "ok" => false })
       stub_slack!(slack_double)
-      expect{subject.send_channel_invite('channel_id', 'user_id')}.to raise_error(SlackAdapter::SlackTeamInviteError)
+
+      expect{ subject.send_channel_invite('channel_id', 'user_id') }.
+        to raise_error(SlackAdapter::SlackTeamInviteError)
     end
   end
 
   describe "#channel_url" do
     it "returns url of a name sanitized for a channel" do
       name = "sweet channel"
-      expect(subject.channel_url(name)).to eq "https://test-team.slack.com/messages/sweet-channel/"
+
+      expect(subject.channel_url(name)).
+        to eq "https://test-team.slack.com/messages/sweet-channel/"
     end
   end
 
