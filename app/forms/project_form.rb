@@ -23,8 +23,6 @@ class ProjectForm
     end
   end
 
-  private
-
   def persist!
     @project = create_project
     @membership = @project.project_memberships.create!(user: user)
@@ -32,9 +30,11 @@ class ProjectForm
     create_github_team
   end
 
+  private
+
   def channel_doesnt_exist
     if slack.find_channel_by_name(name)
-      errors[:channel] << "name already exists. Pick new name for your project"
+      errors[:channel] << "name already exists.  Pick new name for your project"
     end
   end
 
