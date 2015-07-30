@@ -1,9 +1,8 @@
 class CreateProjectMembership
-  attr_reader :user, :project, :slack_client
-  def initialize(user, project, slack_client=nil)
+  attr_reader :user, :project
+  def initialize(user, project)
     @user = user
     @project = project
-    @slack_client = slack_client || SlackAdapter.new
   end
 
   def perform
@@ -15,7 +14,6 @@ class CreateProjectMembership
   private
 
   def create_membership
-    pm = ProjectMembership.new(user: user, project: project)
-    pm.save!
+    ProjectMembership.create!(user: user, project: project)
   end
 end

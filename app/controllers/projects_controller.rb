@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
   def create
     @project = ProjectForm.new(project_params.merge(
       user: current_user,
-      slack: SlackAdapter.new
+      slack: SlackAdapter.new,
+      github: GithubAdapter.new
     ))
 
     if @project.save
