@@ -26,6 +26,7 @@ gem 'refills'
 group :test do
   gem 'webmock'
   gem 'vcr'
+  gem 'coveralls', require: false
 end
 
 group :development, :test do

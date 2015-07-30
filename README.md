@@ -1,4 +1,6 @@
 ## Chatto Hub
+[![Code Climate](https://codeclimate.com/github/smartscheduling/chatto-hub/badges/gpa.svg)](https://codeclimate.com/github/smartscheduling/chatto-hub)
+[![Coverage Status](https://coveralls.io/repos/smartscheduling/chatto-hub/badge.svg?branch=master&service=github)](https://coveralls.io/github/smartscheduling/chatto-hub?branch=master)
 
 ### Set Up
 *  Using Ruby 2.1.5
