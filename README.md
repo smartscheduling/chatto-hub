@@ -1,6 +1,7 @@
 ## Chatto Hub
 [![Code Climate](https://codeclimate.com/github/smartscheduling/chatto-hub/badges/gpa.svg)](https://codeclimate.com/github/smartscheduling/chatto-hub)
 [![Coverage Status](https://coveralls.io/repos/smartscheduling/chatto-hub/badge.svg?branch=master&service=github)](https://coveralls.io/github/smartscheduling/chatto-hub?branch=master)
+[![Build Status](https://travis-ci.org/smartscheduling/chatto-hub.svg?branch=badges)](https://travis-ci.org/smartscheduling/chatto-hub)
 
 Chatto Hub is a tool for the [Mimic Critial
 Datathon](http://criticaldata.mit.edu/) to help developers in the
