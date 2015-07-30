@@ -14,8 +14,8 @@ class SlackAdapter
   end
 
   def send_team_invite(email, channel_id=DEFAULT_CHANNEL_ID)
-    time = Time.now.to_i.to_s
-    url = "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/api/users.admin.invite?t=" + time
+    time = Time.now.to_i
+    url = "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/api/users.admin.invite?t=#{time}"
     token = ENV['SLACK_TEST_TOKEN']
 
     query = { token: token, team_id: team_id, email: email,

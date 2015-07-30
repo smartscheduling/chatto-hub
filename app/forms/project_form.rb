@@ -6,6 +6,7 @@ class ProjectForm
   attribute :description, String
   attribute :user, User
   attribute :slack, SlackAdapter
+  attribute :github, GithubAdapter
 
   validates :name,
     presence: true
@@ -28,6 +29,7 @@ class ProjectForm
     @project = create_project
     @membership = @project.project_memberships.create!(user: user)
     create_slack_channel
+    create_github_team
   end
 
   def channel_doesnt_exist
@@ -55,5 +57,11 @@ class ProjectForm
     else
       false
     end
+  end
+
+  def create_github_team
+    github.create_team(name, description)
+  rescue RestClient::UnprocessableEntity
+    errors[:github] << "wasn't able to create your new team."
   end
 end
