@@ -54,14 +54,10 @@ class ProjectForm
       project.channel_id = id
       project.url = channel_url
       project.save!
-    else
-      false
     end
   end
 
   def create_github_team
     github.create_team(name, description)
-  rescue RestClient::UnprocessableEntity
-    errors[:github] << "wasn't able to create your new team."
   end
 end
