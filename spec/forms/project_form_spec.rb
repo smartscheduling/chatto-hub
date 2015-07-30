@@ -18,7 +18,10 @@ describe ProjectForm do
     context "when valid" do
       it "calls persist!" do
         user = FactoryGirl.create(:user)
-        form = ProjectForm.new(name: "name", description: "description", user: user, slack: slack_double, github: double)
+        form = ProjectForm.new(
+          name: "name", description: "description",
+          user: user, slack: slack_double, github: double
+        )
         expect(form).to receive(:persist!).and_return(true)
         form.save
       end
@@ -71,7 +74,10 @@ describe ProjectForm do
       let(:slack)       { double(channels_create: channel, channel_url: channel_url) }
       let(:github)      { double(create_team: true) }
       let(:user) { FactoryGirl.create(:user) }
-      let(:form) { ProjectForm.new(name: "sample project", description: '', user: user, slack: slack, github: github) }
+      let(:form) { ProjectForm.new(
+        name: "sample project", description: '',
+        user: user, slack: slack, github: github)
+      }
 
       it "saves slack channel id to the project" do
         form.persist!
