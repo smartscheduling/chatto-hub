@@ -13,4 +13,9 @@
 /tmp
 .env
 /spec/fixtures/vcr_cassettes
-/coverage/*
+
+# Test coverage results.
+/coverage
+
+# Sass-output.
+.sass-cache
