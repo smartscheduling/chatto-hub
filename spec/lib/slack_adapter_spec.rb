@@ -37,7 +37,7 @@ describe SlackAdapter do
 
     it "returns proper error if applicable" do
       allow(RestClient::Request).to receive(:execute).
-        and_return("{\"error\":\"already_in_team\"}")
+        and_return("{\"error\":\"something went wrong!\"}")
 
       expect{subject.send_team_invite("email")}.
         to raise_error(SlackAdapter::SlackTeamInviteError)

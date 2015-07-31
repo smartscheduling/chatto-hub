@@ -28,6 +28,7 @@ class ProjectForm
     @membership = @project.project_memberships.create!(user: user)
     create_slack_channel
     create_github_team
+    invite_to_github_team
   end
 
   private
@@ -51,13 +52,18 @@ class ProjectForm
 
     if channel["ok"]
       id = channel["channel"]["id"]
-      project.channel_id = id
-      project.url = channel_url
-      project.save!
+      project.update!(channel_id: id, url: channel_url)
     end
   end
 
   def create_github_team
-    github.create_team(name, description)
+    resp = github.create_team(name, description)
+    project.update!(github_team_id: resp["id"])
+  end
+
+  def invite_to_github_team
+    team_id = project.github_team_id
+    username = user.nickname
+    github.invite_to_team(team_id, username)
   end
 end
