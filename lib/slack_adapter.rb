@@ -23,17 +23,12 @@ class SlackAdapter
 
     response = RestClient::Request.execute(method: :post, url: url, payload: query)
     response = JSON.parse(response)
-
-    if !response["ok"] || response["error"] == "already_in_team"
-      raise SlackTeamInviteError
-    end
+    verify_acceptable_response!(response, :team)
   end
 
   def send_channel_invite(channel_id, user_id)
     response = slack.channels_invite(channel: channel_id, user: user_id)
-    if !response["ok"] || response["error"] == "already_in_channel"
-      raise SlackTeamInviteError
-    end
+    verify_acceptable_response!(response, :channel)
     true
   end
 
@@ -68,5 +63,13 @@ class SlackAdapter
     end
 
     user["id"]
+  end
+
+  private
+
+  def verify_acceptable_response!(response, type)
+    unless response["ok"] || response["error"] == "already_in_#{type}"
+      raise SlackTeamInviteError
+    end
   end
 end

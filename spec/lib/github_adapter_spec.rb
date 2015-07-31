@@ -6,11 +6,22 @@ GithubAdapter.password = "example_password"
 describe GithubAdapter do
   subject { described_class.new }
 
-  describe "#resource" do
+  describe "#create_team_resource" do
     it "returns a RestClient resource with proper parameters" do
       github_url = "https://api.github.com/orgs/chatto-hub-test2/teams"
       expect(RestClient::Resource).to receive(:new).with(github_url, "example_user", "example_password")
-      subject.resource
+      subject.create_team_resource
+    end
+  end
+
+  describe "#invite_to_team" do
+    it "sends a put with the proper end point" do
+      team_id = "42"
+      username = "spencercdixon"
+      github_url = "https://api.github.com/teams/#{team_id}/memberships/#{username}"
+      expect(RestClient::Resource).to receive(:new).with(github_url, "example_user", "example_password").
+        and_return(double(put: {}.to_json))
+      subject.invite_to_team(team_id, username)
     end
   end
 
