@@ -6,11 +6,11 @@ GithubAdapter.password = "example_password"
 describe GithubAdapter do
   subject { described_class.new }
 
-  describe "#create_team_resource" do
+  describe "#team_resource" do
     it "returns a RestClient resource with proper parameters" do
       github_url = "https://api.github.com/orgs/chatto-hub-test2/teams"
       expect(RestClient::Resource).to receive(:new).with(github_url, "example_user", "example_password")
-      subject.create_team_resource
+      subject.team_resource
     end
   end
 
@@ -36,6 +36,40 @@ describe GithubAdapter do
       ).and_return({ ok: true }.to_json)
 
       subject.create_team(name, desc)
+    end
+  end
+
+  describe "#create_repo" do
+    it "calls POST with proper parameters" do
+      github_url = "https://api.github.com/orgs/chatto-hub-test2/repos"
+      expect(RestClient::Resource).to receive(:new).with(github_url, "example_user", "example_password").
+        and_return(double(post: {}.to_json))
+      subject.create_org_repo
+    end
+  end
+
+  describe "#fork_repo" do
+    let(:git) { double(add_remote: true, push: true, remote: 'git_remote') }
+    let(:result) { { 'name' => 'new-project', 'clone_url' => 'github.com/new-project.git' } }
+
+    it "calls clone on Git" do
+      expect(Git).to receive(:clone).with(ENV['CHATTO_HUB_OPEN_SOURCE_URL'], 'new-project', path: '/tmp/checkout').
+        and_return(git)
+      subject.fork_repo(result)
+    end
+
+    it "adds remote named new-origin" do
+      expect(Git).to receive(:clone).with(ENV['CHATTO_HUB_OPEN_SOURCE_URL'], 'new-project', path: '/tmp/checkout').
+        and_return(git)
+      expect(git).to receive(:add_remote).with('new-origin', 'github.com/new-project.git')
+      subject.fork_repo(result)
+    end
+
+    it "pushes the remote to the new origin" do
+      expect(Git).to receive(:clone).with(ENV['CHATTO_HUB_OPEN_SOURCE_URL'], 'new-project', path: '/tmp/checkout').
+        and_return(git)
+      expect(git).to receive(:push).with('git_remote')
+      subject.fork_repo(result)
     end
   end
 end

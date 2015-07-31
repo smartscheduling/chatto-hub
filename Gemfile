@@ -22,6 +22,7 @@ gem 'foundation-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'refills'
+gem 'git'
 
 group :test do
   gem 'webmock'

@@ -70,7 +70,7 @@ describe ProjectForm do
       let(:channel_url) { "slack channel url" }
       let(:channel)     { { "ok" => true, "channel" => { "id" => "channel id" } } }
       let(:slack)       { double(channels_create: channel, channel_url: channel_url) }
-      let(:github)      { double(create_team: { "id" => 42 }, invite_to_team: true) }
+      let(:github)      { github_persist_double }
       let(:user) { FactoryGirl.create(:user) }
       let(:form) { ProjectForm.new(
         name: "sample project", description: '',
@@ -101,8 +101,18 @@ def slack_double
   double(find_channel_by_name: false)
 end
 
+def github_persist_double
+  double(
+    create_team: { "id" => 42 },
+    invite_to_team: true,
+    create_org_repo: true,
+    fork_repo: true
+  )
+end
+
 def stub_slack_and_github!(form)
   allow(form).to receive(:create_slack_channel).and_return(true)
   allow(form).to receive(:create_github_team).and_return(true)
   allow(form).to receive(:invite_to_github_team).and_return(true)
+  allow(form).to receive(:create_new_repo_on_organization).and_return(true)
 end
