@@ -12,6 +12,7 @@ feature 'user signs out', %Q{
 
   scenario 'authenticated user signs out' do
     allow_any_instance_of(SlackAdapter).to receive(:send_team_invite).and_return(true)
+    allow_any_instance_of(User).to receive(:on_slack_team?).and_return(true)
     mock_github_auth!
 
     visit root_path
@@ -19,7 +20,7 @@ feature 'user signs out', %Q{
 
     click_link "Sign in with Github"
 
-    expect(page).to have_content("Successfully signed in as boblob.")
+    expect(page).to have_content("Welcome back!")
 
     click_on 'Sign Out'
     expect(page).to have_content('Signed out successfully')
