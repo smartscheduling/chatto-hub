@@ -105,7 +105,6 @@ GEM
     foundation-rails (5.5.2.1)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
-    git (1.2.9.1)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -293,7 +292,6 @@ DEPENDENCIES
   factory_girl
   font-awesome-rails
   foundation-rails
-  git
   jquery-rails
   launchy
   neat
