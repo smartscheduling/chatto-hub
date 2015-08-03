@@ -9,7 +9,7 @@
     <section class="top-bar-section">
       <ul class="right">
         <li><%= link_to 'New Project', new_project_path %></li>
-        <li><%= link_to 'Browse Projects', projects_path unless current_page?(controller: "projects", action: "index") %></li>
+        <li><%= link_to 'Browse Projects', projects_path %></li>
 
         <%- if current_user.authenticated? -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
