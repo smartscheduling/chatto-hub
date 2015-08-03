@@ -29,7 +29,7 @@ class ProjectForm
     create_slack_channel
     create_github_team
     invite_to_github_team
-    create_and_fork_repo
+    create_and_clone_repo
   end
 
   private
@@ -68,7 +68,7 @@ class ProjectForm
     github.invite_to_team(team_id, username)
   end
 
-  def create_and_fork_repo
+  def create_and_clone_repo
     args = {
       name: name,
       description: description,
@@ -76,6 +76,6 @@ class ProjectForm
     }
     repo_results = github.create_org_repo(args)
     github.add_repo_to_team(project.github_team_id, repo_results["name"])
-    github.fork_repo(name, repo_results["full_name"] + ".git")
+    github.clone_repo(name, repo_results["full_name"])
   end
 end

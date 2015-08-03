@@ -57,23 +57,10 @@ describe GithubAdapter do
     end
   end
 
-  describe "#fork_repo" do
-    before do
-      ENV["CHATTO_HUB_ADMIN_GIT_FORK_SH"] = "fork_sh"
-      ENV["CHATTO_HUB_ADMIN_GIT_USER"] = "git_user"
-      ENV["ROOT_REPO_URI"] = "root_repo"
-    end
-
+  describe "#clone_repo" do
     it "executes sh script" do
-      expect(subject).to receive(:system).with(
-        "sh",
-        "fork_sh",
-        "git_user",
-        "root_repo",
-        "example_project",
-        "example_project.git"
-      )
-      subject.fork_repo("example_project", "example_project.git")
+      expect(subject).to receive(:system)
+      subject.clone_repo("example_project", "example_project.git")
     end
   end
 end

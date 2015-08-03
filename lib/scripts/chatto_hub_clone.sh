@@ -5,10 +5,10 @@ then
     mkdir repos 
 fi
 cd repos
-git clone "$1:$2" $3
-cd $3
-git remote add new-origin "$1:$4"
+git clone $1 $2
+cd $2
+git remote add new-origin $3
 git push new-origin master
 
 cd ..
-rm -rf $3
+rm -rf $2
