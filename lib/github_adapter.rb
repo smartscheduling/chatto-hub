@@ -35,14 +35,15 @@ class GithubAdapter
     resource.put( { permission: "admin" }.to_json, content_type: "application/json")
   end
 
-  def fork_repo(project_name, full_name_git)
+  def clone_repo(project_name, full_name)
+    root_repo_uri = "https://#{user}:#{password}@github.com/#{ENV['ROOT_REPO_URI']}.git"
+    new_repo_uri  = "https://#{user}:#{password}@github.com/#{full_name}.git"
     system(
       "sh",
-      ENV["CHATTO_HUB_ADMIN_GIT_FORK_SH"],
-      ENV["CHATTO_HUB_ADMIN_GIT_USER"],
-      ENV["ROOT_REPO_URI"],
+      Rails.root.join('lib','scripts','chatto_hub_clone.sh').to_s,
+      root_repo_uri,
       project_name,
-      full_name_git
+      new_repo_uri
     )
   end
 

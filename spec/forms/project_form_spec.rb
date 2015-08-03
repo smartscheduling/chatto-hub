@@ -106,7 +106,7 @@ def github_persist_double
     create_team: { "id" => 42 },
     invite_to_team: true,
     create_org_repo: { "name" => "username", "full_name" => "github_repo.git" },
-    fork_repo: true,
+    clone_repo: true,
     add_repo_to_team: true
   )
 end
@@ -115,5 +115,5 @@ def stub_slack_and_github!(form)
   allow(form).to receive(:create_slack_channel).and_return(true)
   allow(form).to receive(:create_github_team).and_return(true)
   allow(form).to receive(:invite_to_github_team).and_return(true)
-  allow(form).to receive(:create_and_fork_repo).and_return(true)
+  allow(form).to receive(:create_and_clone_repo).and_return(true)
 end
