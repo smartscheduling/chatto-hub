@@ -1,4 +1,4 @@
-require 'rest-client'
+require "rest-client"
 
 class GithubAdapter
   cattr_accessor :user, :password
@@ -32,15 +32,15 @@ class GithubAdapter
     resource = create_resource(
       "https://api.github.com/teams/#{team_id}/repos/chatto-hub-test2/#{repo_name}",
       { "Accept" => "application/vnd.github.ironman-preview+json" } ) # Required by Github API
-    resource.put( { permission: 'admin' }.to_json, content_type: "application/json")
+    resource.put( { permission: "admin" }.to_json, content_type: "application/json")
   end
 
   def fork_repo(project_name, full_name_git)
     system(
-      'sh',
-      ENV['CHATTO_HUB_ADMIN_GIT_FORK_SH'],
-      ENV['CHATTO_HUB_ADMIN_GIT_USER'],
-      ENV['ROOT_REPO_URI'],
+      "sh",
+      ENV["CHATTO_HUB_ADMIN_GIT_FORK_SH"],
+      ENV["CHATTO_HUB_ADMIN_GIT_USER"],
+      ENV["ROOT_REPO_URI"],
       project_name,
       full_name_git
     )
