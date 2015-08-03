@@ -3,8 +3,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.github_from_omniauth(auth)
 
     if @user.persisted?
-      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-      set_flash_message(:notice, :success, user: @user.nickname) if is_navigational_format?
+      sign_in @user
+      flash[:notice] =   @user.on_slack_team? ? "Welcome back!" : "Please check email for Slack Invitation and accept."
+      redirect_to root_path
     else
       redirect_to new_user_registration_url
     end

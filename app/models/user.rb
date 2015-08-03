@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
       user.image = auth["info"]["image"]
     end
   end
+
+  def on_slack_team?
+    SlackAdapter.new.user_on_team?(email)
+  end
 end
