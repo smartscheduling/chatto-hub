@@ -75,6 +75,8 @@ class ProjectForm
       team_id: project.github_team_id
     }
     repo_results = github.create_org_repo(args)
+    resp = github.add_repo_to_team(project.github_team_id, repo_results["name"])
+    binding.pry
     github.fork_repo(repo_results)
   end
 end

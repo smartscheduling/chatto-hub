@@ -1,3 +1,3 @@
 Git.configure do |config|
-  config.git_ssh = ENV['bCHATTO_HUB_ADMIN_GIT_SSH']
+  config.git_ssh = ENV['CHATTO_HUB_ADMIN_GIT_SSH']
 end

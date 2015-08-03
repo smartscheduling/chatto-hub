@@ -17,21 +17,29 @@ class GithubAdapter
 
   def invite_to_team(team_id, username)
     resource = create_resource("https://api.github.com/teams/#{team_id}/memberships/#{username}")
-    response = resource.put({}.to_json, content_type: 'application/json')
+    response = resource.put({}.to_json, content_type: "application/json")
     JSON.parse(response)
   end
 
   # ARGS: <Name> <Description> <Team_id>
   def create_org_repo(args = {})
     resource = create_resource("https://api.github.com/orgs/chatto-hub-test2/repos")
-    response = resource.post(args.to_json, content_type:"application/json")
+    response = resource.post(args.to_json, content_type: "application/json")
     JSON.parse(response)
+  end
+
+  def add_repo_to_team(team_id, repo_name)
+    resource = create_resource("https://api.github.com/teams/#{team_id}/repos/chatto-hub-test2/#{repo_name}", { accept: 'application/vnd.github.ironman-preview+json' } )
+    binding.pry
+    response = resource.put( { permission: 'admin' }.to_json)
+    binding.pry
+    a = 1
   end
 
   def fork_repo(create_repo_result)
     git = Git.clone(
       ENV["CHATTO_HUB_OPEN_SOURCE_URL"],
-      create_repo_result["name"], path:  "/tmp/checkout"
+      create_repo_result["name"], path: "/tmp/checkout2"
     )
     git.add_remote("new-origin", create_repo_result["clone_url"])
     git.push(git.remote("new-origin"))
@@ -39,7 +47,11 @@ class GithubAdapter
 
   private
 
-  def create_resource(url)
-    RestClient::Resource.new(url, user, password)
+  def create_resource(url, headers = nil)
+    if headers
+      RestClient::Resource.new(url, user: user, password: password, headers: headers)
+    else
+      RestClient::Resource.new(url, user, password)
+    end
   end
 end
