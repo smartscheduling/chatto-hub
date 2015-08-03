@@ -105,8 +105,9 @@ def github_persist_double
   double(
     create_team: { "id" => 42 },
     invite_to_team: true,
-    create_org_repo: true,
-    fork_repo: true
+    create_org_repo: {"name" => "username", "full_name" => "github_repo.git" },
+    fork_repo: true,
+    add_repo_to_team: true
   )
 end
 
