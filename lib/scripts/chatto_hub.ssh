@@ -1,3 +1,0 @@
-#!/bin/sh
-exec /usr/bin/ssh -i $CHATTO_HUB_ADMIN_ID_RSA_PATH "$@"
-

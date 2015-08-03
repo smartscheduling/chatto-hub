@@ -29,20 +29,21 @@ class GithubAdapter
   end
 
   def add_repo_to_team(team_id, repo_name)
-    resource = create_resource("https://api.github.com/teams/#{team_id}/repos/chatto-hub-test2/#{repo_name}", { accept: 'application/vnd.github.ironman-preview+json' } )
-    binding.pry
-    response = resource.put( { permission: 'admin' }.to_json)
-    binding.pry
-    a = 1
+    resource = create_resource(
+      "https://api.github.com/teams/#{team_id}/repos/chatto-hub-test2/#{repo_name}",
+      { "Accept" => "application/vnd.github.ironman-preview+json" } ) # Required by Github API
+    resource.put( { permission: 'admin' }.to_json, content_type: "application/json")
   end
 
-  def fork_repo(create_repo_result)
-    git = Git.clone(
-      ENV["CHATTO_HUB_OPEN_SOURCE_URL"],
-      create_repo_result["name"], path: "/tmp/checkout2"
+  def fork_repo(project_name, full_name_git)
+    system(
+      'sh',
+      ENV['CHATTO_HUB_ADMIN_GIT_FORK_SH'],
+      ENV['CHATTO_HUB_ADMIN_GIT_USER'],
+      ENV['ROOT_REPO_URI'],
+      project_name,
+      full_name_git
     )
-    git.add_remote("new-origin", create_repo_result["clone_url"])
-    git.push(git.remote("new-origin"))
   end
 
   private
