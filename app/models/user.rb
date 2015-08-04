@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
 
   after_create :slack_team_invite, unless: :skip_callbacks
 
-  def slack_team_invite
-    SlackAdapter.new.send_team_invite(email)
-  end
-
   def authenticated?
     true
+  end
+
+  def slack_team_invite
+    slack_adapter.send_team_invite(email)
   end
 
   def self.github_from_omniauth(auth)
@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
   end
 
   def on_slack_team?
-    SlackAdapter.new.user_on_team?(email)
+    slack_adapter.user_on_team?(email)
+  end
+
+  protected
+
+  def slack_adapter
+    @slack_adapter ||= SlackAdapter.new
   end
 end
