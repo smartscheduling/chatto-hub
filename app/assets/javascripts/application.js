@@ -18,8 +18,3 @@
 // foundation
 $(function(){ $(document).foundation(); });
 
-$(function() {
-  setTimeout(function() {
-    $(".flash").hide(500)
-  }, 4000);
-});
