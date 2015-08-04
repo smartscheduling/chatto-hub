@@ -68,6 +68,8 @@ class SlackAdapter
   private
 
   def verify_acceptable_response!(response, type)
+    puts response
+    puts type
     unless response["ok"] || response["error"] == "already_in_#{type}"
       raise SlackTeamInviteError
     end

@@ -42,7 +42,7 @@ class GithubAdapter
       "sh",
       Rails.root.join('lib','scripts','chatto_hub_clone.sh').to_s,
       root_repo_uri,
-      project_name,
+      project_name.split(' ').join('-'),
       new_repo_uri
     )
   end
