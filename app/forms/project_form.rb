@@ -9,7 +9,8 @@ class ProjectForm
   attribute :github, GithubAdapter
 
   validates :name,
-    presence: true
+    presence: true,
+    length: { in: 0..21 }
   validate :channel_doesnt_exist
 
   attr_accessor :project

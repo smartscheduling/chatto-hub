@@ -45,6 +45,12 @@ input.button.tiny.cta, a.button.cta, a.button.tiny.cta {
 .error-messages {
   border: 2px solid #e74c3c;
 }
+
 .error-messages ul li {
   margin-left: 20px;
 }
+
+.error-messages ul {
+  margin-bottom: 0;
+}
+
