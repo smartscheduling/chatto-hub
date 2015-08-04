@@ -24,8 +24,6 @@ class SlackAdapter
     response = RestClient::Request.execute(method: :post, url: url, payload: query)
     response = JSON.parse(response)
     verify_acceptable_response!(response, :team)
-  rescue SlackAdapter::SlackTeamInviteError
-    Rails.logger.info "Response was: #{response}"
   end
 
   def send_channel_invite(channel_id, user_id)

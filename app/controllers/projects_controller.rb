@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @projects = Project.all.limit(25)
+    @projects = Project.all.limit(50)
   end
 
   def new

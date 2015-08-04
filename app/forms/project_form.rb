@@ -75,6 +75,13 @@ class ProjectForm
       team_id: project.github_team_id
     }
     repo_results = github.create_org_repo(args)
+    project.update!(github_url: repo_results["html_url"])
+    clone_repo(repo_results)
+  end
+
+  private
+
+  def clone_repo(repo_results)
     github.add_repo_to_team(project.github_team_id, repo_results["name"])
     github.clone_repo(name, repo_results["full_name"])
   end
