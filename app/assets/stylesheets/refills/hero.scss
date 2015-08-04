@@ -14,7 +14,6 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 3em;
 
   .hero-logo img {
     height: 4em;
@@ -26,7 +25,8 @@
     @include clearfix;
     color: black;
     margin: auto;
-    padding: 3.5em;
+    padding-top: 3.0em;
+    padding-bottom: 1.5em;
     text-align: center;
 
     .hero-copy {
@@ -49,6 +49,7 @@
         margin-bottom: 0.5em;
         color: black;
         font-family: 'bebasregular';
+        word-spacing: 8px;
 
         @include media($large-screen) {
           font-size: 2.2em;
