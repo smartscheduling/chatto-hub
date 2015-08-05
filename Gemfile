@@ -27,6 +27,7 @@ group :test do
   gem 'webmock'
   gem 'vcr'
   gem 'coveralls', require: false
+  gem 'email_spec'
 end
 
 group :development, :test do

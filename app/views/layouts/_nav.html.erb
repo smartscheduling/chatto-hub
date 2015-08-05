@@ -9,11 +9,11 @@
     <section class="top-bar-section">
       <ul class="right">
         <li><%= link_to 'New Project', new_project_path %></li>
-        <li><%= link_to 'Browse Projects', projects_path unless current_page?(controller: "projects", action: "index") %></li>
+        <li><%= link_to 'Browse Projects', projects_path unless current_page?(controller: "/projects", action: "index") %></li>
 
         <%- if current_user.authenticated? -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <li><%= image_tag avatar_url(current_user, 45) %></li>
+          <li><%= image_tag(avatar_url(current_user, 45), size: "45x45") %></li>
         <%- else -%>
           <li>
             <div class="modal">

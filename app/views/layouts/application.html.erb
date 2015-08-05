@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ChattoHub</title>
+  <title>Chatto</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
@@ -11,7 +11,7 @@
   <%= render 'layouts/nav' %>
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
-     <p><%= value %></p>
+     <p><%= sanitize(value) %></p>
     </div>
   <%- end -%>
 

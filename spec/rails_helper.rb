@@ -78,6 +78,8 @@ RSpec.configure do |config|
     ActiveRecord::Base.skip_callbacks = true
   end
 
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
   config.include AuthenticationHelper
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros

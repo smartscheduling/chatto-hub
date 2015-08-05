@@ -10,4 +10,8 @@ class GuestUser
   def nickname
     "friend"
   end
+
+  def on_slack_team?
+    false
+  end
 end
