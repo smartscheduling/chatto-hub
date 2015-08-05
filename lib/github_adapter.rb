@@ -1,10 +1,10 @@
 require "rest-client"
 
 class GithubAdapter
-  cattr_accessor :user, :password
+  cattr_accessor :user, :password, :github_organization
 
   def team_resource
-    create_resource("https://api.github.com/orgs/chatto-hub-test2/teams")
+    create_resource("https://api.github.com/orgs/#{github_organization}/teams")
   end
 
   def create_team(name, description)
@@ -23,14 +23,14 @@ class GithubAdapter
 
   # ARGS: <Name> <Description> <Team_id>
   def create_org_repo(args = {})
-    resource = create_resource("https://api.github.com/orgs/chatto-hub-test2/repos")
+    resource = create_resource("https://api.github.com/orgs/#{github_organization}/repos")
     response = resource.post(args.to_json, content_type: "application/json")
     JSON.parse(response)
   end
 
   def add_repo_to_team(team_id, repo_name)
     resource = create_resource(
-      "https://api.github.com/teams/#{team_id}/repos/chatto-hub-test2/#{repo_name}",
+      "https://api.github.com/teams/#{team_id}/repos/#{github_organization}/#{repo_name}",
       { "Accept" => "application/vnd.github.ironman-preview+json" } ) # Required by Github API
     resource.put( { permission: "admin" }.to_json, content_type: "application/json")
   end
