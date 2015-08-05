@@ -12,11 +12,24 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user_for_slack!
-    adapter = SlackAdapter.new
-
-    unless adapter.user_on_team?(current_user.email)
-      flash[:notice] = "Sign in to get invite for slack team"
+    unless current_user.on_slack_team?
+      if !current_user.authenticated?
+        flash[:notice] = "Sign in to get an invitation to the Critical Data Slack team."
+      else
+        flash[:notice] = slack_resend_message
+      end
       redirect_to root_path
     end
+  end
+
+  protected
+
+  def slack_resend_message
+    <<-MSG.strip_heredoc
+      You have not accepted the Slack Invitation to
+      the Critical Data team.  Check your email to redeem
+      invitation. If you can't find the email
+      from Slack contact <code>dev@smartscheduling.io</code>.
+    MSG
   end
 end

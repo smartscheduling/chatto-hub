@@ -20,4 +20,10 @@ describe GuestUser do
       expect(subject.nickname).to eq "friend"
     end
   end
+
+  describe "#on_slack_team?" do
+    it "should always return false" do
+      expect(subject.on_slack_team?).to eq false
+    end
+  end
 end

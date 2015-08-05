@@ -87,6 +87,9 @@ GEM
     dotenv (2.0.1)
     dotenv-rails (2.0.1)
       dotenv (= 2.0.1)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -289,6 +292,7 @@ DEPENDENCIES
   coveralls
   devise
   dotenv-rails
+  email_spec
   factory_girl
   font-awesome-rails
   foundation-rails

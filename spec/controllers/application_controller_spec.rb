@@ -10,15 +10,33 @@ describe ControllerSubClass do
   end
 
   describe "#authenticate_user_for_slack!" do
-    before do
-      allow_any_instance_of(SlackAdapter).to receive(:user_on_team?).
-        and_return(false)
+    context "unauthenticated user" do
+      it "redirects to root path and prompts sign in" do
+        get :index
+        expect(response).to redirect_to root_path
+        expect(flash[:notice]).to eq "Sign in to get an invitation to the Critical Data Slack team."
+      end
     end
 
-    it "redirects to root path" do
-      get :index
-      expect(response).to redirect_to root_path
-      expect(flash[:notice]).to eq "Sign in to get invite for slack team"
+    context "authenticated user who isn't on team" do
+      let(:user) { FactoryGirl.create(:user, sign_in_count: 1) }
+
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        sign_in user
+        allow_any_instance_of(User).to receive(:on_slack_team?).and_return false
+      end
+
+      it "sets different message for signed in user" do
+        get :index
+        expect(response).to redirect_to root_path
+        expect(flash[:notice]).to eq <<-MSG.strip_heredoc
+          You have not accepted the Slack Invitation to
+          the Critical Data team.  Check your email to redeem
+          invitation. If you can't find the email
+          from Slack contact <code>dev@smartscheduling.io</code>.
+        MSG
+      end
     end
   end
 end
