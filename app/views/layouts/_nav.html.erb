@@ -13,7 +13,7 @@
 
         <%- if current_user.authenticated? -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <li><%= image_tag avatar_url(current_user, 45) %></li>
+          <li><%= image_tag(avatar_url(current_user, 45), size: "45x45") %></li>
         <%- else -%>
           <li>
             <div class="modal">
