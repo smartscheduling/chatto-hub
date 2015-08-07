@@ -17,13 +17,11 @@ class SlackAdapter
   def send_team_invite(email, channel_id = DEFAULT_CHANNEL_ID)
     time = Time.now.to_i
     url = "https://#{team_name}.slack.com/api/users.admin.invite?t=#{time}"
-    puts url
-    puts channel_id
+
     query = { token: token, team_id: team_id, email: email,
       set_active: true, _attempts: 1, channels: channel_id}.to_query
-    puts query
+
     response = RestClient::Request.execute(method: :post, url: url, payload: query)
-    puts response
     response = JSON.parse(response)
     verify_acceptable_response!(response, :team)
   end
