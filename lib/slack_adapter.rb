@@ -28,6 +28,7 @@ class SlackAdapter
 
   def send_channel_invite(channel_id, user_id)
     response = slack.channels_invite(channel: channel_id, user: user_id)
+    puts response
     verify_acceptable_response!(response, :channel)
     true
   end

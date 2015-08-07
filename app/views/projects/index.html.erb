@@ -12,11 +12,11 @@
           </div>
 
           <div class="large-4 columns clearfix vertical-center">
-            <%= link_to proj.github_url, class: 'button tiny right has-tip', data: { "tooltip" => "", options: "hover_delay: 25" }, title: "View repository on Github"  do %>
+            <%= link_to proj.github_url, class: 'button tiny right has-tip', data: { "tooltip" => "", options: "hover_delay: 25" }, title: "View repository on Github", target: "_blank" do %>
               <i class="fa fa-github fa-2x"></i>
             <% end %>
 
-            <%= link_to project_slack_invitations_path(proj), id: "slack-#{proj.id}", method: :post, class: 'button tiny right has-tip', data: { "tooltip" => "", options: "hover_delay: 25" }, title: "Join discussion on Slack" do %>
+            <%= link_to project_slack_invitations_path(proj), id: "slack-#{proj.id}", method: :post, class: 'button tiny right has-tip', data: { "tooltip" => "", options: "hover_delay: 25" }, title: "Join discussion on Slack", target: "_blank" do %>
               <i class="fa fa-slack fa-2x"></i>
             <% end %>
           </div>
