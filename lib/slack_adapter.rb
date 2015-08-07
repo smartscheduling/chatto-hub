@@ -2,7 +2,7 @@ require 'rest-client'
 # Configuration in config/initializers/slack
 class SlackAdapter
   class SlackTeamInviteError < StandardError; end
-  DEFAULT_CHANNEL_ID="C067NNHEY"
+  DEFAULT_CHANNEL_ID = ENV['SLACK_DEFAULT_CHANNEL']
 
   cattr_accessor :team_id, :token, :team_name
 
@@ -14,7 +14,7 @@ class SlackAdapter
     slack.channels_create(opts)
   end
 
-  def send_team_invite(email, channel_id=DEFAULT_CHANNEL_ID)
+  def send_team_invite(email, channel_id = DEFAULT_CHANNEL_ID)
     time = Time.now.to_i
     url = "https://#{team_name}.slack.com/api/users.admin.invite?t=#{time}"
 
