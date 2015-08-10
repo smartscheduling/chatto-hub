@@ -1,47 +1,3 @@
-input.button.tiny, a.button, a.button.tiny {
-  background: none;
-  font-family: 'Ubuntu mono';
-  border: 2px solid black;
-  color: black;
-  font-weight: 600;
-  transition: background-color 0.5s ease;
-  &:hover {
-    background: black;
-    color: white;
-  }
-  &:focus {
-    background: black;
-    color: white;
-  }
-}
-
-input.button.tiny.cta, a.button.cta, a.button.tiny.cta {
-  background: rgb(66, 133, 244);
-  font-family: 'Ubuntu mono';
-  border: 2px solid rgb(66, 133, 244);
-  color: white;
-  font-weight: 600;
-  transition: background-color 0.5s ease;
-  &:hover {
-    background: none;
-    color: black;
-  }
-}
-
-.flash {
-  border: 2px solid #e74c3c;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  padding: 1%;
-}
-
-.flash p {
-  font-family: 'Ubuntu mono';
-  margin-bottom: 0;
-}
-
 .error-messages {
   border: 2px solid #e74c3c;
 }
@@ -54,3 +10,23 @@ input.button.tiny.cta, a.button.cta, a.button.tiny.cta {
   margin-bottom: 0;
 }
 
+p {
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "bebasregular";
+  word-spacing: 6px;
+  color: rgba(50,50,50,1);
+}
+
+body {
+  background: #eee;
+}
+
+.btn {
+  background: rgba(50, 50, 50, 1);
+  &:hover {
+    background: rgba(50, 50, 50, 1);
+  }
+}

@@ -10,7 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require foundation_and_overrides
  *= require font-awesome
  */
 
@@ -31,19 +30,20 @@
          font-url('BEBAS___-webfont.svg#bebasregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
-@import 'bourbon';
-@import 'neat';
-@import 'refills/hero';
-@import 'refills/modal';
-@import 'refills/scroll_on_page';
-@import 'refills/accordian_minimal';
-@import 'refills/tooltips';
+// Materialize Framework
+@import "materialize/components/color";
+$secondary-color: color("blue", "darken-1") !default;
+@import 'materialize';
 
-@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+// Custom scss
 @import 'globals';
-@import 'projects/index';
-@import 'home_page'
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+@import 'pages/home_page';
+@import 'pages/projects';
+@import 'components/nav';
 
+nav ul li#nav-image:hover, nav ul li#nav-image.active {
+  background: none;
+}

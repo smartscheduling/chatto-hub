@@ -9,21 +9,18 @@
 <body>
 
   <%= render 'layouts/nav' %>
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-     <p><%= sanitize(value) %></p>
+  <%= render 'layouts/flash' %>
+
+  <div class="container">
+    <div class="row">
+      <div id="toast-container" class="col s12"></div>
     </div>
-  <%- end -%>
 
-  <%= yield :hero %>
-
-  <div class="row">
-    <div class="large-8 large-offset-2 columns">
+    <div class="col s8">
       <%= yield %>
     </div>
   </div>
 
-  <%= javascript_include_tag "vendor/modernizr" %>
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
 </body>

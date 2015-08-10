@@ -1,16 +1,25 @@
-<h1>Create a new project</h1>
+<h3>Create a new project</h3>
 
-<%= form_for @project, url: projects_path do |f| %>
-  <% if @project.errors.any? %>
-    <%= render 'layouts/shared/errors', error_object: @project %>
+<div class="row">
+  <%= form_for @project, url: projects_path, class: "col s12" do |f| %>
+    <% if @project.errors.any? %>
+      <%= render 'layouts/shared/errors', error_object: @project %>
+    <% end %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :name %>
+        <%= f.text_field :name, type: "text", length: 21, class: "validate"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "materialize-textarea validate" %>
+      </div>
+    </div>
+
+    <%= f.submit 'Create Project', class: "btn black white-text" %>
   <% end %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-
-  <%= f.submit 'Create Project', class: "button success tiny" %>
-<% end %>
-
+</div>
