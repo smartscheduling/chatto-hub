@@ -1,0 +1,30 @@
+<li>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card">
+        <div class="card-content">
+          <h4 class=""><span class="card-title"><%= project.name %></span></h4>
+          <p><%= project.description %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to project.github_url, class: 'btn tooltipped white-text', data: { position: "left", delay: "100", tooltip: "View repository on Github"}, target: "_blank" do %>
+            <i class="fa fa-github fa-2x left"></i>
+            Github
+          <% end %>
+
+          <%= link_to project_slack_invitations_path(project), id: "slack-#{project.id}", method: :post, class: 'btn tooltipped white-text', data: { position: "right", delay: "100", tooltip: "Join discussion on Slack" }, target: "_blank" do %>
+            <i class="fa fa-slack fa-2x left"></i>
+            Slack
+          <% end %>
+
+          <% if project.creator == current_user %>
+            <%= link_to edit_project_path(project), class: "btn amber darken-2 black-text", id: "edit_project_#{project.id}" do %>
+              <i class="fa fa-pencil-square-o fa-2x left"></i>
+              Edit
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

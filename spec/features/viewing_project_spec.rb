@@ -6,7 +6,7 @@ feature 'viewing projects' do
 
   context 'as a visitor' do
     scenario 'I can view a list of projects' do
-      FactoryGirl.create(:project, name: 'Smart Scheduling')
+      FactoryGirl.create(:project_with_callback, name: 'Smart Scheduling')
       visit projects_path
       expect(page).to have_content('Smart Scheduling')
     end
