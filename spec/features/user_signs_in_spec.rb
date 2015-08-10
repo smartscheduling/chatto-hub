@@ -17,7 +17,7 @@ feature 'user signs in', %Q{
 
       click_link "Sign in with Github"
 
-      expect(page).to have_content("Welcome back!")
+      expect(page.source).to match(/Welcome back!/)
       expect(User.count).to eq(1)
     end
 

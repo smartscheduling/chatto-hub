@@ -43,9 +43,6 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.10)
-    bourbon (4.2.3)
-      sass (~> 3.4)
-      thor
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -105,9 +102,6 @@ GEM
       websocket-driver (>= 0.5.1)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
-    foundation-rails (5.5.2.1)
-      railties (>= 3.1.0)
-      sass (>= 3.3.0, < 3.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -127,6 +121,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    materialize-sass (0.97.0)
+      sass (~> 3.3)
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
@@ -134,9 +130,6 @@ GEM
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neat (1.7.2)
-      bourbon (>= 4.0)
-      sass (>= 3.3)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -198,7 +191,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    refills (0.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -286,7 +278,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bourbon
   capybara
   coffee-rails (~> 4.1.0)
   coveralls
@@ -295,17 +286,15 @@ DEPENDENCIES
   email_spec
   factory_girl
   font-awesome-rails
-  foundation-rails
   jquery-rails
   launchy
-  neat
+  materialize-sass
   omniauth-github
   pg
   pry-rails
   quiet_assets
   rails (= 4.2.1)
   rails_12factor
-  refills
   rest-client
   rspec-rails
   sass-rails (~> 5.0)

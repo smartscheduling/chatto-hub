@@ -19,11 +19,10 @@ feature 'user signs out', %Q{
     find(:css, '#sign-in').click
 
     click_link "Sign in with Github"
-
-    expect(page).to have_content("Welcome back!")
+    expect(page.source).to match(/Welcome back!/)
 
     click_on 'Sign Out'
-    expect(page).to have_content('Signed out successfully')
+    expect(page.source).to match(/Signed out successfully/)
   end
 
   scenario 'unauthenticated user attempts to sign out' do
