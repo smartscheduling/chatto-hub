@@ -12,12 +12,20 @@ FactoryGirl.define do
   factory :project do
     sequence(:name) {|n| "Smart Scheduling#{n}"}
     description 'An app for scheduling efficiency'
-    before :create do |proj|
-      proj.creator = FactoryGirl.create(:user)
-      proj.channel_id = 'SKJFJE@#'
-      proj.url = 'www.slack.com'
+
+    factory :project_with_callback do
+      before :create do |proj|
+        proj.creator = FactoryGirl.create(:user)
+        proj.channel_id = 'SKJFJE@#'
+        proj.url = 'www.slack.com'
+      end
+    end
+
+    factory :blank_project do
+      creator_id "1"
     end
   end
+
 end
 
 

@@ -2,30 +2,6 @@
 <h3 class="center-align">Projects</h3>
 <div id="projects">
   <ul>
-    <%- @projects.each do |proj| %>
-      <li>
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <div class="card">
-              <div class="card-content">
-                <h4 class=""><span class="card-title"><%= proj.name %></span></h4>
-                <p><%= proj.description %></p>
-              </div>
-              <div class="card-action">
-                <%= link_to proj.github_url, class: 'btn tooltipped white-text', data: { position: "left", delay: "100", tooltip: "View repository on Github"}, target: "_blank" do %>
-                  <i class="fa fa-github fa-2x left"></i>
-                  Github
-                <% end %>
-
-                <%= link_to project_slack_invitations_path(proj), id: "slack-#{proj.id}", method: :post, class: 'btn tooltipped white-text', data: { position: "right", delay: "100", tooltip: "Join discussion on Slack" }, target: "_blank" do %>
-                  <i class="fa fa-slack fa-2x left"></i>
-                  Slack
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-    <% end %>
+    <%= render partial: "project", collection: @projects %>
   </ul>
 </div>
