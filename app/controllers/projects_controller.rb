@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_path, notice: "Successfully created project."
     else
+      flash.now[:notice] = @project.errors.full_messages.join("\n")
       render :new
     end
   end
