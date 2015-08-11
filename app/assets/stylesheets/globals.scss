@@ -12,12 +12,13 @@
 
 p {
   font-weight: 300;
+  color: #212121;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "bebasregular";
   word-spacing: 6px;
-  color: rgba(50,50,50,1);
+  color: #444;
 }
 
 body {
@@ -28,5 +29,10 @@ body {
   background: rgba(50, 50, 50, 1);
   &:hover {
     background: rgba(50, 50, 50, 1);
+  }
+}
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 10%;
   }
 }
