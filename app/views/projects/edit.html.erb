@@ -1,0 +1,25 @@
+<h3>Edit project</h3>
+
+<div class="row">
+  <%= form_for @project, class: "col s12" do |f| %>
+    <% if @project.errors.any? %>
+      <%= render 'layouts/shared/errors', error_object: @project %>
+    <% end %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :name %>
+        <%= f.text_field :name, type: "text", length: 21, :disabled => '' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "materialize-textarea validate" %>
+      </div>
+    </div>
+
+    <%= f.submit 'Update Project', class: "btn white-text" %>
+  <% end %>
+</div>
