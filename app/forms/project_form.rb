@@ -13,7 +13,7 @@ class ProjectForm
     length: { in: 0..21 },
     format: {
       with: /\A[a-zA-Z]+\z/,
-      message: "cannot have any special characters."
+      message: "only allows letters."
     }
   validate :channel_doesnt_exist
 

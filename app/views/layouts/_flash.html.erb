@@ -3,7 +3,7 @@
     <% flash.each do |type, msg| %>
       <script type="text/javascript">
         $(document).ready(function() {
-          Materialize.toast('<%= msg %>', 4000)
+          Materialize.toast("<%= msg %>", 4000)
         });
       </script>
     <% end %>
