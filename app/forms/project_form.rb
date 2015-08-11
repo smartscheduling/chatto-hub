@@ -10,7 +10,11 @@ class ProjectForm
 
   validates :name,
     presence: true,
-    length: { in: 0..21 }
+    length: { in: 0..21 },
+    format: {
+      with: /\A[a-zA-Z]+\z/,
+      message: "cannot have any special characters."
+    }
   validate :channel_doesnt_exist
 
   attr_accessor :project
