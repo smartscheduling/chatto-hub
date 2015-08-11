@@ -23,10 +23,10 @@
   <div class="modal-content">
     <h3>Sign in with Github</h3>
     <p>We currently require sign in with github in order to give you access to project repositories.</p>
-    <%= link_to omniauth_authorize_path(:user, :github), class: 'btn white-text' do %>
+    <a class='btn white-text' href="/users/auth/github">
       <i class="fa fa-github fa-2x"></i>
       Sign in with Github
-    <% end %>
+    </a>
   </div>
 </div>
 
