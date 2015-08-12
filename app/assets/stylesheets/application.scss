@@ -38,6 +38,7 @@ $secondary-color: color("blue", "darken-1") !default;
 @import 'materialize';
 
 // Custom scss
+@import 'colors';
 @import 'globals';
 @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 @import 'pages/home_page';

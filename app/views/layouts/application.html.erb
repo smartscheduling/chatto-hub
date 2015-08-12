@@ -12,13 +12,9 @@
   <%= render 'layouts/flash' %>
 
   <div class="container">
-    <div class="row">
-      <div id="toast-container" class="col s12"></div>
-    </div>
+    <div id="toast-container" class="col s12"></div>
 
-    <div class="col s8">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
 
   <%= javascript_include_tag 'application' %>

@@ -8,15 +8,15 @@
     font-family: "bebasregular";
     margin-top: 0;
     word-spacing: 8px;
-    color: #444;
+    color: $header-button-color;
   }
 
   .card-title {
     margin-top: 0;
-    color: #444;
+    color: $header-button-color;
   }
 
   .btn {
-    background: rgba(50, 50, 50, 1);
+    background: $header-button-color;
   }
 }
