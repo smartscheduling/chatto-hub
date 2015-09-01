@@ -4,7 +4,7 @@
       <div class="col s8 offset-s2">
         <ul id="nav-mobile" class="left">
           <li><%= link_to 'New Project', new_project_path %></li>
-          <li><%= link_to 'Browse Projects', projects_path unless current_page?(controller: "/projects", action: "index") %></li>
+          <li><%= link_to 'Browse Projects', projects_path %></li>
           <li id="search">
             <div class="input-field">
               <%= form_for :q, url: projects_path, method: :get do |f| %>
