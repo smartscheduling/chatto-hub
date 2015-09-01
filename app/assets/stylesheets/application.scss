@@ -32,6 +32,14 @@
     font-style: normal;
 }
 
+@font-face {
+  font-family: 'langdon';
+  src: font-url('Langdon.otf');
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
 // Materialize Framework
 @import "materialize/components/color";
 $secondary-color: color("blue", "darken-1") !default;
