@@ -17,7 +17,6 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "langdon";
-  word-spacing: 6px;
   color: $header-button-color;
 }
 
@@ -46,4 +45,9 @@ div.row {
   nav .brand-logo {
     left: 10%;
   }
+}
+
+/* fix this to not use ID's */
+ul#nav-mobile li a, ul#right-nav li a {
+  font-weight: bold;
 }

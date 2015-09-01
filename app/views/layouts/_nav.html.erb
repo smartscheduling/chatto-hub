@@ -2,11 +2,22 @@
   <div class="nav-wrapper">
     <div class="row">
       <div class="col s8 offset-s2">
-        <a href="/" class="brand-logo left white-text">Chatto</a>
-
-        <ul id="nav-mobile" class="right">
+        <ul id="nav-mobile" class="left">
           <li><%= link_to 'New Project', new_project_path %></li>
           <li><%= link_to 'Browse Projects', projects_path unless current_page?(controller: "/projects", action: "index") %></li>
+          <li id="search">
+            <div class="input-field">
+              <%= form_for :q, url: projects_path, method: :get do |f| %>
+                <%= f.label :search do %>
+                  <i class="material-icons">search</i>
+                <% end %>
+                <%= f.search_field :search %>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+
+        <ul id="right-nav" class="right">
           <%- if current_user.authenticated? -%>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
             <li id="nav-image"><%= image_tag(avatar_url(current_user, 64), size: "64x64") %></li>
@@ -21,7 +32,7 @@
 
 <div id="modal1" class="modal">
   <div class="modal-content">
-    <h3>Sign in with Github</h3>
+    <h3>SIGN IN WITH GITHUB</h3>
     <p>We currently require sign in with github in order to give you access to project repositories.</p>
     <a class='btn white-text' href="/users/auth/github">
       <i class="fa fa-github fa-2x"></i>

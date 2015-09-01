@@ -12,8 +12,9 @@ class ProjectForm
     presence: true,
     length: { in: 0..21 },
     format: {
-      with: /\A\w+\s*\w+\z/,
-      message: "only allows letters."
+      with: /^[a-zA-Z\d\s]*$/,
+      message: "only allows letters.",
+      multiline: true
     }
   validate :channel_doesnt_exist
 

@@ -2,7 +2,11 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @projects = Project.all.limit(50)
+    if params[:q]
+      @projects = Project.search(params[:q][:search])
+    else
+      @projects = Project.all.limit(100)
+    end
   end
 
   def new
