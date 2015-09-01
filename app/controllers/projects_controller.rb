@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     if params[:q]
       @projects = Project.search(params[:q][:search])
     else
-      @projects = Project.all.limit(100)
+      @projects = Project.all.order(created_at: :desc).limit(100)
     end
   end
 
