@@ -12,7 +12,7 @@ class ProjectForm
     presence: true,
     length: { in: 0..21 },
     format: {
-      with: /\A[a-zA-Z]+\z/,
+      with: /\A\w+\s*\w+\z/,
       message: "only allows letters."
     }
   validate :channel_doesnt_exist

@@ -8,7 +8,7 @@ feature 'viewing projects' do
     scenario 'I can view a list of projects' do
       FactoryGirl.create(:project_with_callback, name: 'Smart Scheduling')
       visit projects_path
-      expect(page).to have_content('Smart Scheduling')
+      expect(page).to have_content('SMART SCHEDULING') # uppercase bc of font
     end
   end
 end
