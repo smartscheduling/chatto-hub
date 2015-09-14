@@ -12,7 +12,7 @@ class ProjectForm
     presence: true,
     length: { in: 0..21 },
     format: {
-      with: /^[a-zA-Z\d\s]*$/,
+      with: /^[a-zA-Z\d\s-]*$/,
       message: "only allows letters.",
       multiline: true
     }
