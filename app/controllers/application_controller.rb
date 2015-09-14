@@ -25,11 +25,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def slack_resend_message
-    <<-MSG.strip_heredoc
-      You have not accepted the Slack Invitation to
-      the Critical Data team.  Check your email to redeem
-      invitation. If you can't find the email
-      from Slack contact <code>dev@smartscheduling.io</code>.
-    MSG
+    "You have not accepted the Slack Invitation to the Critical Data team.  Check your email to redeem invitation."
   end
 end
