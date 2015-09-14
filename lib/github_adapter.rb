@@ -10,7 +10,8 @@ class GithubAdapter
   def create_team(name, description)
     response = team_resource.post({
       name: name,
-      description: description
+      description: description,
+      permission: 'admin'
     }.to_json, content_type: "application/json")
     JSON.parse(response)
   end
