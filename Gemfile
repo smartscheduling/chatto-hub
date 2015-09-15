@@ -4,6 +4,7 @@ ruby '2.1.5'
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'virtus'
+gem 'unicorn' # Production Web Server
 
 # Authentication
 gem 'omniauth-github'
