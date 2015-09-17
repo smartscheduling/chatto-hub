@@ -14,6 +14,10 @@ class SlackAdapter
     slack.channels_create(opts)
   end
 
+  def channels_archive(opts)
+    slack.channels_archive(opts)
+  end
+
   def send_team_invite(email, channel_id = DEFAULT_CHANNEL_ID)
     time = Time.now.to_i
     url = "https://#{team_name}.slack.com/api/users.admin.invite?t=#{time}"

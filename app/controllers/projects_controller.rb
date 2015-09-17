@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
     if params[:q]
@@ -38,6 +38,17 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Successfully updated project."
     end
     redirect_to projects_path
+  end
+
+  # TODO:
+  # - archive slack channel
+  # - delete github repo
+  def destroy
+    @project = Project.find(params[:id])
+    SlackAdapter.new.channels_archive(channel: @project.channel_id)
+    if @project.destroy
+      redirect_to :back, notice: "Successfully deleted project"
+    end
   end
 
   private
