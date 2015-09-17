@@ -23,7 +23,7 @@ describe GithubAdapter do
       desc = "Project description"
 
       expect_any_instance_of(RestClient::Resource).to receive(:post).with(
-        { name: name, description: desc }.to_json,
+        { name: name, description: desc, permission: "admin" }.to_json,
         content_type: "application/json"
       ).and_return({ ok: true }.to_json)
 

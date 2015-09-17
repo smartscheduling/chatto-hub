@@ -30,12 +30,7 @@ describe ControllerSubClass do
       it "sets different message for signed in user" do
         get :index
         expect(response).to redirect_to root_path
-        expect(flash[:notice]).to eq <<-MSG.strip_heredoc
-          You have not accepted the Slack Invitation to
-          the Critical Data team.  Check your email to redeem
-          invitation. If you can't find the email
-          from Slack contact <code>dev@smartscheduling.io</code>.
-        MSG
+        expect(flash[:notice]).to eq "You have not accepted the Slack Invitation to the Critical Data team.  Check your email to redeem invitation."
       end
     end
   end
