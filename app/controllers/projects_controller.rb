@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   def index
     if params[:q]
       @projects = Project.search(params[:q][:search])
+      @results = @projects.count
     else
       @projects = Project.all.order(created_at: :desc).limit(100)
     end

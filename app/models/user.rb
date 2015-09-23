@@ -29,7 +29,15 @@ class User < ActiveRecord::Base
     slack_adapter.user_on_team?(email)
   end
 
+  def on_github_team?
+    github_adapter.member_in_team?(ENV['JUP_AUTH_TEAM_ID'])
+  end
+
   protected
+
+  def github_adapter
+    @github_adapter ||= GithubAdapter.new
+  end
 
   def slack_adapter
     @slack_adapter ||= SlackAdapter.new

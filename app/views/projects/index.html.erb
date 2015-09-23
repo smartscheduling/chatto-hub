@@ -1,4 +1,29 @@
-<h3 class="center-align page-title">PROJECTS</h3>
+<br />
+<div class="row project-search">
+  <div class="col s12">
+    <nav>
+      <div class="nav-wrapper">
+        <%= form_for :q, url: projects_path, method: :get do |f| %>
+          <div class="input-field">
+            <%= f.label :search do %>
+              <i class="material-icons">search</i>
+            <% end %>
+            <%= f.search_field :search, id: 'project-search' %>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+  <div class="col s12">
+    <% if @results %>
+      <p class="results"> Found <%= pluralize(@results, 'project') %> matching "<%= params["q"]["search"] %>"</p>
+      <%= link_to projects_path, class: 'btn-floating btn-small' do %>
+        <i class="fa fa-times"></i>
+      <% end  %>
+    <% end %>
+  </div>
+</div>
+
 <div id="projects">
   <ul>
     <%= render partial: "project", collection: @projects %>

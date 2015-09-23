@@ -18,4 +18,31 @@
   .btn {
     background: $header-button-color;
   }
+
+}
+
+div.project-search {
+  input#project-search {
+    background-color: white;
+  }
+
+  i.material-icons {
+    color: rgba(60,60,60,1) !important;
+    margin-left: 10px;
+  }
+
+  .btn-floating {
+    background: $header-button-color;
+    transform: scaleY(0.6) scaleX(0.6);
+  }
+
+  .results {
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 10px;
+  }
+
+  i.fa.fa-times {
+    font-size: 1.3em;
+  }
 }

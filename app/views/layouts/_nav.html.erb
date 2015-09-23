@@ -8,16 +8,9 @@
           </li>
           <li><%= link_to 'Projects', projects_path %></li>
           <li><%= link_to 'New Project', new_project_path %></li>
-          <li id="search" class="hide-on-med-and-down">
-            <div class="input-field">
-              <%= form_for :q, url: projects_path, method: :get do |f| %>
-                <%= f.label :search do %>
-                  <i class="material-icons">search</i>
-                <% end %>
-                <%= f.search_field :search %>
-              <% end %>
-            </div>
-          </li>
+          <% if current_user.on_github_team? %>
+            <li><%= link_to 'My Notebooks', 'https://54.221.200.95/', target: '_blank' %></li>
+          <% end %>
         </ul>
 
         <ul id="right-nav" class="right">

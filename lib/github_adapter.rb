@@ -48,6 +48,16 @@ class GithubAdapter
     )
   end
 
+  def team_members(team_id)
+    resource = create_resource("https://api.github.com/teams/#{team_id}/members")
+    JSON.parse(resource.get)
+  end
+
+  def member_in_team?(team_id, username)
+    members = team_members(team_id).map { |m| m["login"] }
+    members.include?(username)
+  end
+
   private
 
   def create_resource(url, headers = nil)
