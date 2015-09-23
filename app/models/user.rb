@@ -30,7 +30,10 @@ class User < ActiveRecord::Base
   end
 
   def on_github_team?
-    github_adapter.member_in_team?(ENV['JUP_AUTH_TEAM_ID'])
+    return true if github_verified
+    on_team = github_adapter.member_in_team?(ENV['JUP_AUTH_TEAM_ID'], nickname)
+    update(github_verified: on_team)
+    on_team
   end
 
   protected
