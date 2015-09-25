@@ -7,6 +7,12 @@ class GithubAdapter
     create_resource("https://api.github.com/orgs/#{github_organization}/teams")
   end
 
+  def organization_members
+    resource = create_resource("https://api.github.com/orgs/#{github_organization}/members")
+    response = resource.get
+    JSON.parse(response)
+  end
+
   def create_team(name, description)
     response = team_resource.post({
       name: name,
@@ -53,12 +59,12 @@ class GithubAdapter
     JSON.parse(resource.get)
   end
 
-  def member_in_team?(team_id, username)
-    members = team_members(team_id).map { |m| m["login"] }
+  def member_in_organization?(username)
+    members = organization_members.map { |m| m["login"] }
     members.include?(username)
   end
 
-  private
+  # private
 
   def create_resource(url, headers = nil)
     if headers

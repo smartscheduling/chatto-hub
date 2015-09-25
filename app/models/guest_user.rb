@@ -15,7 +15,7 @@ class GuestUser
     false
   end
 
-  def on_github_team?
+  def on_github_organization?
     false
   end
 end

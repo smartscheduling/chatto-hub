@@ -29,9 +29,9 @@ class User < ActiveRecord::Base
     slack_adapter.user_on_team?(email)
   end
 
-  def on_github_team?
+  def on_github_organization?
     return true if github_verified
-    on_team = github_adapter.member_in_team?(ENV['JUP_AUTH_TEAM_ID'], nickname)
+    on_team = github_adapter.member_in_organization?(nickname)
     update(github_verified: on_team)
     on_team
   end
